@@ -5,6 +5,13 @@ import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
+// Metadata for the page, including favicon
+export const metadata = {
+  icons: {
+    icon: '/public/favicon.ico', // Favicon link
+  },
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -12,6 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className='light'>
+      <head>
+         {/* Favicon link */}
+         <link rel="icon" href="/public/favicon.ico" sizes="any" />
+      </head>
         <body
           className={cn(
             'min-h-screen font-sans antialiased grainy',
