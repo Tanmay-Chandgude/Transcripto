@@ -6,9 +6,12 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUp } from 'lucide-react';
 import { buttonVariants } from '@/components/ui/button';
 import Image from 'next/image';
+import { useKindeAuth } from '@kinde-oss/kinde-auth-nextjs'
+import { LoginLink } from '@kinde-oss/kinde-auth-nextjs/components'
 
 export default function Home() {
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const { isAuthenticated } = useKindeAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,17 +47,28 @@ export default function Home() {
           Transcripto lets you transcribe, translate, and publish your content in multiple languages, making it easy to create and share blogs with global reach.
         </p>
 
-        <Link
-          className={buttonVariants({
-            size: 'lg',
-            className: 'mt-5',
-          })}
-          href='/dashboard'
-          target='_blank'
-        >
-          Get started{' '}
-          <ArrowRight className='ml-2 h-5 w-5' />
-        </Link>
+        {isAuthenticated ? (
+          <Link
+            className={buttonVariants({
+              size: 'lg',
+              className: 'mt-5',
+            })}
+            href='/dashboard'
+          >
+            Go to Dashboard{' '}
+            <ArrowRight className='ml-2 h-5 w-5' />
+          </Link>
+        ) : (
+          <LoginLink
+            className={buttonVariants({
+              size: 'lg',
+              className: 'mt-5',
+            })}
+          >
+            Get started{' '}
+            <ArrowRight className='ml-2 h-5 w-5' />
+          </LoginLink>
+        )}
       </MaxWidthWrapper>
 
       {/* Value Proposition Section */}

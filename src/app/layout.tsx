@@ -1,7 +1,8 @@
 import Navbar from '@/components/Navbar'
-import { cn } from '@/lib/utils'  // Fixed import
+import { cn } from '@/lib/utils'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { NotificationProvider } from '@/context/NotificationContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,17 +20,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className='light'>
-      <head>
-        <link rel="icon" href="/favicon.png" sizes="any" />
-      </head>
       <body
         className={cn(
           'min-h-screen font-sans antialiased grainy',
           inter.className
         )}
       >
-        <Navbar />
-        {children}
+        <NotificationProvider>
+          {children}
+        </NotificationProvider>
       </body>
     </html>
   )
