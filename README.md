@@ -33,7 +33,7 @@ A modern web application for transcribing and translating audio/video content us
 ```
 
 3. Set up environment variables in `.env.local`:
-```env
+
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
 KINDE_CLIENT_ID=your_kinde_client_id
