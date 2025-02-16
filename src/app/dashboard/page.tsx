@@ -21,79 +21,68 @@ import {
 
 // Expanded language options using Google's supported languages
 const SUPPORTED_LANGUAGES = [
-  // Official Indian Languages
+  // Indian Official Languages
   { code: 'as', name: 'Assamese (অসমীয়া)' },
   { code: 'bn', name: 'Bengali (বাংলা)' },
-  { code: 'bho', name: 'Bhojpuri (भोजपुरी)' },
-  { code: 'brx', name: 'Bodo (बड़ो)' },
-  { code: 'doi', name: 'Dogri (डोगरी)' },
   { code: 'gu', name: 'Gujarati (ગુજરાતી)' },
   { code: 'hi', name: 'Hindi (हिन्दी)' },
   { code: 'kn', name: 'Kannada (ಕನ್ನಡ)' },
   { code: 'ks', name: 'Kashmiri (कश्मीरी)' },
-  { code: 'gom', name: 'Konkani (कोंकणी)' },
-  { code: 'mai', name: 'Maithili (मैथिली)' },
   { code: 'ml', name: 'Malayalam (മലയാളം)' },
-  { code: 'mni', name: 'Manipuri (মণিপুরী)' },
   { code: 'mr', name: 'Marathi (मराठी)' },
-  { code: 'ne', name: 'Nepali (नेपाली)' },
   { code: 'or', name: 'Odia (ଓଡ଼ିଆ)' },
   { code: 'pa', name: 'Punjabi (ਪੰਜਾਬੀ)' },
   { code: 'sa', name: 'Sanskrit (संस्कृतम्)' },
-  { code: 'sat', name: 'Santali (संताली)' },
   { code: 'sd', name: 'Sindhi (سنڌي)' },
   { code: 'ta', name: 'Tamil (தமிழ்)' },
   { code: 'te', name: 'Telugu (తెలుగు)' },
   { code: 'ur', name: 'Urdu (اردو)' },
+  { code: 'bo', name: 'Tibetan (བོད་སྐད་)' },
+  { code: 'brx', name: 'Bodo (बड़ो)' },
+  { code: 'doi', name: 'Dogri (डोगरी)' },
+  { code: 'kok', name: 'Konkani (कोंकणी)' },
+  { code: 'mai', name: 'Maithili (मैथिली)' },
+  { code: 'mni', name: 'Manipuri (মণিপুরী)' },
+  { code: 'sat', name: 'Santali (संताली)' },
 
-  // Major World Languages
-  { code: 'ar', name: 'Arabic (العربية)' },
-  { code: 'eu', name: 'Basque (Euskara)' },
-  { code: 'bg', name: 'Bulgarian (български)' },
-  { code: 'my', name: 'Burmese (မြန်မာစာ)' },
-  { code: 'zh', name: 'Chinese - Simplified (简体中文)' },
-  { code: 'zh-TW', name: 'Chinese - Traditional (繁體中文)' },
-  { code: 'hr', name: 'Croatian (Hrvatski)' },
-  { code: 'cs', name: 'Czech (Čeština)' },
-  { code: 'da', name: 'Danish (Dansk)' },
-  { code: 'nl', name: 'Dutch (Nederlands)' },
+  // Major Global Languages
   { code: 'en', name: 'English' },
-  { code: 'et', name: 'Estonian (Eesti)' },
-  { code: 'tl', name: 'Filipino (Tagalog)' },
-  { code: 'fi', name: 'Finnish (Suomi)' },
+  { code: 'es', name: 'Spanish (Español)' },
   { code: 'fr', name: 'French (Français)' },
   { code: 'de', name: 'German (Deutsch)' },
-  { code: 'el', name: 'Greek (Ελληνικά)' },
-  { code: 'he', name: 'Hebrew (עברית)' },
-  { code: 'hu', name: 'Hungarian (Magyar)' },
-  { code: 'is', name: 'Icelandic (Íslenska)' },
-  { code: 'id', name: 'Indonesian (Bahasa Indonesia)' },
-  { code: 'ga', name: 'Irish (Gaeilge)' },
   { code: 'it', name: 'Italian (Italiano)' },
+  { code: 'pt', name: 'Portuguese (Português)' },
+  { code: 'ru', name: 'Russian (Русский)' },
   { code: 'ja', name: 'Japanese (日本語)' },
   { code: 'ko', name: 'Korean (한국어)' },
-  { code: 'lv', name: 'Latvian (Latviešu)' },
-  { code: 'lt', name: 'Lithuanian (Lietuvių)' },
-  { code: 'ms', name: 'Malay (Bahasa Melayu)' },
-  { code: 'mt', name: 'Maltese (Malti)' },
-  { code: 'no', name: 'Norwegian (Norsk)' },
-  { code: 'fa', name: 'Persian (فارسی)' },
-  { code: 'pl', name: 'Polish (Polski)' },
-  { code: 'pt', name: 'Portuguese (Português)' },
-  { code: 'ro', name: 'Romanian (Română)' },
-  { code: 'ru', name: 'Russian (Русский)' },
-  { code: 'sr', name: 'Serbian (Српски)' },
-  { code: 'sk', name: 'Slovak (Slovenčina)' },
-  { code: 'sl', name: 'Slovenian (Slovenščina)' },
-  { code: 'es', name: 'Spanish (Español)' },
-  { code: 'sw', name: 'Swahili (Kiswahili)' },
-  { code: 'sv', name: 'Swedish (Svenska)' },
-  { code: 'th', name: 'Thai (ไทย)' },
+  { code: 'zh', name: 'Chinese - Simplified (简体中文)' },
+  { code: 'zh-TW', name: 'Chinese - Traditional (繁體中文)' },
+  { code: 'ar', name: 'Arabic (العربية)' },
   { code: 'tr', name: 'Turkish (Türkçe)' },
-  { code: 'uk', name: 'Ukrainian (Українська)' },
   { code: 'vi', name: 'Vietnamese (Tiếng Việt)' },
-  { code: 'cy', name: 'Welsh (Cymraeg)' }
+  { code: 'id', name: 'Indonesian (Bahasa Indonesia)' },
+  { code: 'ms', name: 'Malay (Bahasa Melayu)' },
+  { code: 'th', name: 'Thai (ไทย)' },
+  { code: 'fa', name: 'Persian (فارسی)' },
+  { code: 'he', name: 'Hebrew (עברית)' },
+  { code: 'pl', name: 'Polish (Polski)' }
 ].sort((a, b) => a.name.localeCompare(b.name))
+
+const COMMON_LANGUAGES = [
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Spanish' },
+  { code: 'fr', name: 'French' },
+  { code: 'de', name: 'German' },
+  { code: 'it', name: 'Italian' },
+  { code: 'pt', name: 'Portuguese' },
+  { code: 'ru', name: 'Russian' },
+  { code: 'ja', name: 'Japanese' },
+  { code: 'ko', name: 'Korean' },
+  { code: 'zh', name: 'Chinese (Simplified)' },
+  { code: 'hi', name: 'Hindi' },
+  { code: 'ar', name: 'Arabic' },
+  // Add more as needed
+]
 
 const TranslationLoadingState = () => (
   <div className="space-y-4 animate-pulse">
@@ -118,26 +107,36 @@ export default function DashboardPage() {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('')
   const [file, setFile] = useState<File | null>(null)
   const [isCopied, setIsCopied] = useState(false)
-  const [uploadedFileName, setUploadedFileName] = useState<string>('')
+  const [uploadedFileName, setUploadedFileName] = useState('')
   const [transcribedText, setTranscribedText] = useState('')
   const [isTranscribing, setIsTranscribing] = useState(false)
   const [textContent, setTextContent] = useState('')
+  const [isReadyForTranslation, setIsReadyForTranslation] = useState(false)
+  const [showTranscriptionActions, setShowTranscriptionActions] = useState(false)
+  const [filteredLanguages, setFilteredLanguages] = useState(SUPPORTED_LANGUAGES)
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null)
 
   const handleMediaUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (!file) return
+    if (!file || !user?.id) return
 
+    // Clear previous states
+    setTranslatedContent('')
+    setTranscribedText('')
+    setContent('')
+    
+    // Update file states
+    setUploadedFile(file)
     setUploadedFileName(file.name)
     setIsTranscribing(true)
-    setTranslatedContent('') // Clear previous translation
 
     try {
-      const transcription = await transcribeAudio(file)
+      const transcription = await transcribeAudio(file, user.id)
       setTranscribedText(transcription)
-      setContent(transcription) // Set this for translation
+      setContent(transcription)
       showNotification({
         title: 'Success',
-        message: 'Media transcribed successfully. You can now translate it.',
+        message: 'Media transcribed successfully',
         type: 'success'
       })
     } catch (error) {
@@ -146,8 +145,6 @@ export default function DashboardPage() {
         message: error instanceof Error ? error.message : 'Failed to transcribe media',
         type: 'error'
       })
-      setTranscribedText('')
-      setContent('')
     } finally {
       setIsTranscribing(false)
     }
@@ -204,8 +201,8 @@ export default function DashboardPage() {
     }
   }
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(translatedContent)
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
     setIsCopied(true)
     showNotification({
       title: 'Success',
@@ -227,12 +224,23 @@ export default function DashboardPage() {
 
         <Tabs defaultValue="transcribe" className="space-y-6">
           <TabsList className="grid grid-cols-2 w-[400px]">
-            <TabsTrigger value="transcribe">Transcribe</TabsTrigger>
-            <TabsTrigger value="translate">Translate</TabsTrigger>
+            <TabsTrigger 
+              value="transcribe"
+              className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+            >
+              Transcribe
+            </TabsTrigger>
+            <TabsTrigger 
+              value="translate"
+              className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+            >
+              Translate
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="transcribe">
             <div className="grid lg:grid-cols-2 gap-8">
+              {/* Input Section */}
               <Card className="border-2 border-blue-100 shadow-lg">
                 <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
                   <div className="flex items-center gap-3">
@@ -243,10 +251,11 @@ export default function DashboardPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-6 pt-6">
+                  {/* File Upload Section */}
                   <div className="border-2 border-dashed border-gray-200 rounded-lg p-6 hover:border-blue-300 transition-colors">
                     <Input
                       type="file"
-                      accept="audio/*,video/*"
+                      accept="audio/*,video/*,.mp3,.mp4,.wav,.avi,.mov,.m4a,.ogg,.webm"
                       onChange={handleMediaUpload}
                       disabled={isTranscribing}
                       className="hidden"
@@ -256,23 +265,33 @@ export default function DashboardPage() {
                       htmlFor="media-upload"
                       className="flex flex-col items-center cursor-pointer"
                     >
-                      <Upload className="h-8 w-8 text-gray-400 mb-2" />
                       {uploadedFileName ? (
                         <>
-                          <span className="text-sm font-medium text-blue-600">
+                          <div className="p-2 bg-blue-50 rounded-full">
+                            {uploadedFile?.type.startsWith('video/') ? (
+                              <Video className="h-8 w-8 text-blue-600" />
+                            ) : (
+                              <FileAudio className="h-8 w-8 text-blue-600" />
+                            )}
+                          </div>
+                          <span className="text-sm font-medium text-blue-600 mt-2">
                             {uploadedFileName}
                           </span>
                           <span className="text-xs text-gray-500 mt-1">
+                            {uploadedFile ? (uploadedFile.size / (1024 * 1024)).toFixed(2) + ' MB' : ''}
+                          </span>
+                          <span className="text-xs text-blue-500 mt-1">
                             Click to change file
                           </span>
                         </>
                       ) : (
                         <>
+                          <Upload className="h-8 w-8 text-gray-400 mb-2" />
                           <span className="text-sm text-gray-600">
                             Drag & drop or click to upload
                           </span>
                           <span className="text-xs text-gray-400 mt-1">
-                            Supports audio and video files (max 25MB)
+                            Supports audio (.mp3, .wav, .m4a, .ogg) and video (.mp4, .webm, .mov, .avi)
                           </span>
                         </>
                       )}
@@ -280,16 +299,16 @@ export default function DashboardPage() {
                   </div>
 
                   {isTranscribing && (
-                    <div className="space-y-4 animate-pulse">
-                      <div className="flex items-center justify-center text-gray-400">
-                        <Loader2 className="w-6 h-6 animate-spin mr-2" />
-                        <span>Transcribing your media...</span>
-                      </div>
+                    <div className="flex items-center justify-center p-4 bg-blue-50 rounded-lg">
+                      <Loader2 className="w-6 h-6 animate-spin mr-2 text-blue-600" />
+                      <span className="text-blue-600">Transcribing your media...</span>
                     </div>
                   )}
 
+                  {/* Transcribed Content and Translation Options */}
                   {transcribedText && !isTranscribing && (
                     <div className="space-y-4">
+                      {/* Show Transcribed Content First */}
                       <div className="relative">
                         <div className="absolute -top-3 left-4 px-2 bg-white">
                           <label className="text-sm font-medium text-gray-600">
@@ -303,7 +322,8 @@ export default function DashboardPage() {
                         />
                       </div>
 
-                      <div className="relative" style={{ zIndex: 50 }}>
+                      {/* Translation Options */}
+                      <div className="relative flex-1" style={{ zIndex: 50 }}>
                         <div className="absolute -top-3 left-4 px-2 bg-white">
                           <label className="text-sm font-medium text-gray-600">
                             Translate To
@@ -316,68 +336,52 @@ export default function DashboardPage() {
                           <SelectTrigger className="border-2">
                             <SelectValue placeholder="Select target language" />
                           </SelectTrigger>
-                          <SelectContent 
-                            className="absolute w-full max-h-[300px] overflow-y-auto bg-white border rounded-md shadow-lg"
-                            position="popper"
-                            side="bottom"
-                            sideOffset={5}
-                            style={{ zIndex: 100 }}
-                          >
-                            <div className="sticky top-0 bg-white border-b p-2">
+                          <SelectContent>
+                            <div className="p-2">
                               <Input
                                 placeholder="Search languages..."
-                                className="border-2"
+                                className="mb-2"
                                 onChange={(e) => {
-                                  const searchBox = e.target.value.toLowerCase();
-                                  const options = document.querySelectorAll('[data-language-option]');
-                                  options.forEach(option => {
-                                    const text = option.textContent?.toLowerCase() || '';
-                                    if (text.includes(searchBox)) {
-                                      option.classList.remove('hidden');
-                                    } else {
-                                      option.classList.add('hidden');
-                                    }
-                                  });
+                                  const search = e.target.value.toLowerCase()
+                                  const filtered = SUPPORTED_LANGUAGES.filter(lang => 
+                                    lang.name.toLowerCase().includes(search)
+                                  )
+                                  setFilteredLanguages(filtered)
                                 }}
                               />
                             </div>
-                            <div className="p-1">
-                              {SUPPORTED_LANGUAGES.map((lang) => (
-                                <SelectItem 
-                                  key={lang.code} 
-                                  value={lang.code}
-                                  data-language-option
-                                  className="cursor-pointer hover:bg-gray-100 rounded-sm px-2 py-1.5"
-                                >
+                            <div className="max-h-[300px] overflow-y-auto">
+                              {(filteredLanguages || SUPPORTED_LANGUAGES).map((lang) => (
+                                <SelectItem key={lang.code} value={lang.code}>
                                   {lang.name}
                                 </SelectItem>
                               ))}
                             </div>
                           </SelectContent>
                         </Select>
-                      </div>
 
-                      <Button 
-                        onClick={handleTranslate}
-                        disabled={!transcribedText || !selectedLanguage || isProcessing}
-                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-                      >
-                        {isProcessing ? (
-                          <LoadingSpinner size="sm" />
-                        ) : (
-                          <>
-                            Translate Transcription
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </>
-                        )}
-                      </Button>
+                        <Button 
+                          onClick={handleTranslate}
+                          disabled={!selectedLanguage || isProcessing}
+                          className="w-full mt-4 bg-blue-600 hover:bg-blue-700"
+                        >
+                          {isProcessing ? (
+                            <LoadingSpinner size="sm" />
+                          ) : (
+                            <>
+                              Translate
+                              <ArrowRight className="ml-2 h-4 w-4" />
+                            </>
+                          )}
+                        </Button>
+                      </div>
                     </div>
                   )}
                 </CardContent>
               </Card>
 
               {/* Output Section */}
-              {(content || translatedContent) && (
+              {(transcribedText || translatedContent) && (
                 <Card className="border-2 border-green-100 shadow-lg">
                   <CardHeader className="bg-gradient-to-r from-green-50 to-teal-50">
                     <div className="flex items-center justify-between">
@@ -385,56 +389,40 @@ export default function DashboardPage() {
                         <div className="p-2 bg-green-100 rounded-lg">
                           <Languages className="h-5 w-5 text-green-600" />
                         </div>
-                        <CardTitle>Translation Output</CardTitle>
+                        <CardTitle>{translatedContent ? 'Translation' : 'Transcription'}</CardTitle>
                       </div>
-                      {translatedContent && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={copyToClipboard}
-                          className={`transition-all duration-200 ${
-                            isCopied 
-                              ? 'text-green-600 bg-green-50 hover:bg-green-100 hover:text-green-700' 
-                              : 'text-gray-600 hover:text-gray-900'
-                          }`}
-                          disabled={isCopied}
-                        >
-                          {isCopied ? (
-                            <>
-                              <CheckCheck className="h-4 w-4 mr-2" />
-                              Copied!
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="h-4 w-4 mr-2" />
-                              Copy
-                            </>
-                          )}
-                        </Button>
-                      )}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => copyToClipboard(translatedContent || transcribedText)}
+                        className={`transition-all duration-200 ${
+                          isCopied 
+                            ? 'text-green-600 bg-green-50 hover:bg-green-100' 
+                            : 'text-gray-600 hover:text-gray-900'
+                        }`}
+                        disabled={isCopied}
+                      >
+                        {isCopied ? (
+                          <>
+                            <CheckCheck className="h-4 w-4 mr-2" />
+                            Copied!
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="h-4 w-4 mr-2" />
+                            Copy
+                          </>
+                        )}
+                      </Button>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-6">
-                    {isProcessing ? (
-                      <TranslationLoadingState />
-                    ) : (
-                      <Textarea
-                        value={translatedContent}
-                        readOnly
-                        className="min-h-[400px] border-2 bg-gradient-to-b from-gray-50 to-white"
-                        placeholder="Translation will appear here..."
-                      />
-                    )}
-                    
-                    {translatedContent && (
-                      <Button 
-                        className="w-full mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-                        disabled={isProcessing}
-                      >
-                        Save as Blog Post
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    )}
+                    <Textarea
+                      value={translatedContent || transcribedText}
+                      readOnly
+                      className="min-h-[400px] border-2"
+                      placeholder="Output will appear here..."
+                    />
                   </CardContent>
                 </Card>
               )}
@@ -517,10 +505,10 @@ export default function DashboardPage() {
                   </div>
 
                   {/* Language Selection */}
-                  <div className="relative" style={{ zIndex: 50 }}>
+                  <div className="relative flex-1" style={{ zIndex: 50 }}>
                     <div className="absolute -top-3 left-4 px-2 bg-white">
                       <label className="text-sm font-medium text-gray-600">
-                        Target Language
+                        Translate To
                       </label>
                     </div>
                     <Select
@@ -530,41 +518,28 @@ export default function DashboardPage() {
                       <SelectTrigger className="border-2">
                         <SelectValue placeholder="Select target language" />
                       </SelectTrigger>
-                      <SelectContent 
-                        className="absolute w-full max-h-[300px] overflow-y-auto bg-white border rounded-md shadow-lg"
-                        position="popper"
-                        side="bottom"
-                        sideOffset={5}
-                        style={{ zIndex: 100 }}
-                      >
-                        <div className="sticky top-0 bg-white border-b p-2">
+                      <SelectContent>
+                        <div className="p-2">
                           <Input
                             placeholder="Search languages..."
-                            className="border-2"
+                            className="mb-2"
                             onChange={(e) => {
-                              const searchBox = e.target.value.toLowerCase();
-                              const options = document.querySelectorAll('[data-language-option]');
-                              options.forEach(option => {
-                                const text = option.textContent?.toLowerCase() || '';
-                                if (text.includes(searchBox)) {
-                                  option.classList.remove('hidden');
-                                } else {
-                                  option.classList.add('hidden');
-                                }
-                              });
+                              const search = e.target.value.toLowerCase()
+                              // Filter languages based on search
+                              const filtered = SUPPORTED_LANGUAGES.filter(lang => 
+                                lang.name.toLowerCase().includes(search)
+                              )
+                              setFilteredLanguages(filtered)
                             }}
                           />
                         </div>
-                        {SUPPORTED_LANGUAGES.map((lang) => (
-                          <SelectItem 
-                            key={lang.code} 
-                            value={lang.code}
-                            data-language-option
-                            className="cursor-pointer hover:bg-gray-100"
-                          >
-                            {lang.name}
-                          </SelectItem>
-                        ))}
+                        <div className="max-h-[300px] overflow-y-auto">
+                          {(filteredLanguages || SUPPORTED_LANGUAGES).map((lang) => (
+                            <SelectItem key={lang.code} value={lang.code}>
+                              {lang.name}
+                            </SelectItem>
+                          ))}
+                        </div>
                       </SelectContent>
                     </Select>
                   </div>
@@ -600,7 +575,7 @@ export default function DashboardPage() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={copyToClipboard}
+                        onClick={() => copyToClipboard(translatedContent)}
                         className={`transition-all duration-200 ${
                           isCopied 
                             ? 'text-green-600 bg-green-50 hover:bg-green-100 hover:text-green-700' 

@@ -22,44 +22,33 @@ interface WitErrorResponse {
   error: string;
 }
 
-export async function transcribeAudio(file: File): Promise<string> {
+export async function transcribeAudio(file: File, userId: string): Promise<string> {
   try {
-    // Check file size (25MB limit)
-    const MAX_FILE_SIZE = 25 * 1024 * 1024 // 25MB in bytes
-    if (file.size > MAX_FILE_SIZE) {
-      throw new Error('File size exceeds 25MB limit.')
+    if (file.size > 25 * 1024 * 1024) {
+      throw new Error('File size must be less than 25MB')
     }
 
-    // Convert file to blob if needed
-    const audioBlob = file.type === 'audio/wav' ? file : await convertToWav(file);
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('userId', userId)
 
-    const response = await fetch('https://api.wit.ai/speech', {
+    const response = await fetch('/api/transcribe', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_WIT_AI_TOKEN}`,
-        'Content-Type': 'audio/wav',
-        'Accept': 'application/json'
-      },
-      body: audioBlob
-    });
+      body: formData,
+    })
 
     if (!response.ok) {
-      const errorData = await response.json() as WitErrorResponse;
-      throw new Error(errorData.error || 'Transcription failed');
+      const error = await response.json()
+      throw new Error(error.error || 'Transcription failed')
     }
 
-    const data = await response.json() as WitResponse;
-    
-    if (data.error) {
-      throw new Error(data.error);
-    }
-
-    return data.text;
+    const data = await response.json()
+    return data.transcription
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(`Failed to transcribe audio: ${error.message}`);
+      throw new Error(`Failed to transcribe audio: ${error.message}`)
     }
-    throw new Error('Failed to transcribe audio');
+    throw new Error('Failed to transcribe audio')
   }
 }
 
