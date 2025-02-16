@@ -16,8 +16,9 @@ create table public.blogs (
   user_id uuid references public.profiles(id) on delete cascade not null,
   title text not null,
   content text not null,
+  description text,
   original_language text not null,
-  status text default 'draft',
+  status text default 'published',
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );

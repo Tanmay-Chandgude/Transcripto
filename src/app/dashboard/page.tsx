@@ -18,6 +18,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { SaveBlogDialog } from '@/components/SaveBlogDialog'
+import { useRouter } from 'next/navigation'
 
 // Expanded language options using Google's supported languages
 const SUPPORTED_LANGUAGES = [
@@ -115,6 +117,8 @@ export default function DashboardPage() {
   const [showTranscriptionActions, setShowTranscriptionActions] = useState(false)
   const [filteredLanguages, setFilteredLanguages] = useState(SUPPORTED_LANGUAGES)
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
+  const [showSaveBlogDialog, setShowSaveBlogDialog] = useState(false)
+  const router = useRouter()
 
   const handleMediaUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -612,6 +616,7 @@ export default function DashboardPage() {
                   
                   {translatedContent && (
                     <Button 
+                      onClick={() => setShowSaveBlogDialog(true)}
                       className="w-full mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
                       disabled={isProcessing}
                     >
@@ -625,6 +630,24 @@ export default function DashboardPage() {
           </TabsContent>
         </Tabs>
       </div>
+      <SaveBlogDialog
+        isOpen={showSaveBlogDialog}
+        onClose={() => setShowSaveBlogDialog(false)}
+        content={translatedContent || transcribedText || ''}
+        language={selectedLanguage || 'en'}
+        onSave={() => {
+          console.log('Blog saved, redirecting...')
+          showNotification({
+            title: '📚 Redirecting...',
+            message: 'Taking you to your blogs...',
+            type: 'success'
+          })
+          setTimeout(() => {
+            router.push('/dashboard/blogs')
+            router.refresh()
+          }, 500)
+        }}
+      />
     </div>
   )
 } 

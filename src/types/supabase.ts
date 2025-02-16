@@ -12,6 +12,7 @@ export type Blog = {
   user_id: string;
   title: string;
   content: string;
+  description?: string;
   original_language: string;
   status: 'draft' | 'published';
   created_at: string;
