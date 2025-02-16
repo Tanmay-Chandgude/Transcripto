@@ -26,6 +26,32 @@ A modern web application for transcribing and translating audio/video content us
 - Supabase
 - Kinde Auth
 
+A modern web application for transcribing and translating audio/video content using AI.
+
+## Features
+
+- **Transcription**
+  - Support for audio and video files (mp3, wav, m4a, ogg, mp4, webm, mov, avi)
+  - File size limits: 10MB (free) / 25MB (pro)
+  - Real-time transcription using OpenAI Whisper
+
+- **Translation**
+  - Support for 22 Indian languages
+  - Major global languages included
+  - Powered by Google's Gemini AI
+  - Document translation (.txt, .doc, .docx, .pdf)
+  - Direct text input support
+
+## Tech Stack
+
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- OpenAI Whisper API
+- Google Gemini AI
+- Supabase
+- Kinde Auth
+
 ## Getting Started
 
 1. Clone the repository
@@ -46,6 +72,11 @@ OPENAI_API_KEY=your_openai_key
 4. Run the development server:
 ```bash
 npm run dev
+```
+
+## License
+
+MIT
 ```
 
 ## License
