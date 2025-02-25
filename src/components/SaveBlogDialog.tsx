@@ -19,18 +19,29 @@ interface SaveBlogDialogProps {
 }
 
 export function SaveBlogDialog({ isOpen, onClose, content, language, onSave }: SaveBlogDialogProps) {
-  const { user } = useKindeAuth()
+  const { user, isLoading: isAuthLoading } = useKindeAuth()
   const { showNotification } = useNotification()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [isSaving, setIsSaving] = useState(false)
 
   const handleSave = async () => {
-    console.log('Save button clicked');
-    console.log('Current state:', { user, title, content, language });
+    if (isAuthLoading) {
+      console.log('Auth still loading...');
+      return;
+    }
 
-    if (!user?.id || !title.trim()) {
-      console.log('Validation failed:', { userId: user?.id, title });
+    if (!user?.id) {
+      console.log('No user found:', user);
+      showNotification({
+        title: '❌ Error',
+        message: 'Please sign in to save blogs',
+        type: 'error'
+      });
+      return;
+    }
+
+    if (!title.trim()) {
       showNotification({
         title: '❌ Error',
         message: 'Please enter a title',
@@ -41,26 +52,17 @@ export function SaveBlogDialog({ isOpen, onClose, content, language, onSave }: S
 
     setIsSaving(true);
     try {
-      if (!content) {
-        console.log('No content found');
-        throw new Error('No content to save');
-      }
-
-      console.log('Attempting Supabase insert with:', {
-        user_id: user.id,
-        title: title.trim(),
-        content_length: content.length,
-        language
-      });
-
-      const { error, data } = await supabase.from('blogs').insert({
+      console.log('Attempting to save blog with user:', user.id);
+      
+      const { data, error } = await supabase.from('blogs').insert([{
         user_id: user.id,
         title: title.trim(),
         content: content,
         description: description.trim() || null,
         original_language: language,
-        status: 'published'
-      });
+        status: 'published',
+        created_at: new Date().toISOString()
+      }]).select();
 
       if (error) {
         console.error('Supabase error:', error);
@@ -68,10 +70,10 @@ export function SaveBlogDialog({ isOpen, onClose, content, language, onSave }: S
       }
 
       console.log('Blog saved successfully:', data);
-      
+
       showNotification({
-        title: '✨ Success!',
-        message: 'Blog saved successfully',
+        title: '✨ Blog Created!',
+        message: 'Your blog has been saved successfully.',
         type: 'success'
       });
 
@@ -103,7 +105,7 @@ export function SaveBlogDialog({ isOpen, onClose, content, language, onSave }: S
         console.log('Save button clicked');
         handleSave();
       }}
-      disabled={!title.trim() || isSaving}
+      disabled={!title.trim() || isSaving || isAuthLoading || !user}
       className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white"
     >
       {isSaving ? (
